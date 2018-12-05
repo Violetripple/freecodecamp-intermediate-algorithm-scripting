@@ -18,8 +18,7 @@ function whatIsInAName(collection = [{}], source = {}) {
     if (itemKeys.length < srcKeys.length) return; // item keys should be more.
     for (const i in source) {
       // loop source object keys.
-      if (!itemKeys.includes(i)) return; // every source key should be included.
-      if (source[i] !== item[i]) return; // and their values should be equal.
+      if (!itemKeys.includes(i) || source[i] !== item[i]) return; // every source key should be included. and their values should be equal.
     }
     result.push(item);
   });
@@ -32,8 +31,7 @@ function whatIsInAName2(collection = [{}], source = {}) {
   // use for loop with return statements will terminate whatIsInAName2 function.
   collection.forEach((o) => {
     for (const i in source) {
-      if (!o[i]) return;
-      if (source[i] !== o[i]) return;
+      if (!o[i] || source[i] !== o[i]) return;
     }
     result.push(o);
   });
@@ -44,8 +42,7 @@ function whatIsInAName2(collection = [{}], source = {}) {
 function whatIsInAName3(collection = [{}], source = {}) {
   return collection.filter((item) => {
     for (const i in source) {
-      if (!item[i]) return false;
-      if (source[i] !== item[i]) return false;
+      if (!item[i] || source[i] !== item[i]) return false;
     }
     return true;
   });
